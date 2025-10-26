@@ -17,22 +17,19 @@ html, body {
   background: radial-gradient(circle, rgb(0,0,0), rgb(1,44,42));
 }
 
-/* Container do iframe ocupando 100% da tela */
+/* Container centralizado ocupando toda a tela */
 #iframeContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #iframeContainer iframe {
-  width: 100%;
-  height: 100%;
+  width: 90%;
+  height: 90%;
   border: none;
-  display: block;
-  overflow: hidden;
 }
 
 /* Texto no topo centralizado */
@@ -53,7 +50,6 @@ html, body {
   user-select: none;
 }
 
-/* Imagens laterais */
 .side-img {
   height: 1em;
   width: auto;
@@ -71,7 +67,6 @@ html, body {
   60% { transform: scale(1.15); opacity: 0.9; }
 }
 
-/* Responsivo */
 @media (max-width: 600px) {
   .top-text {
     font-size: 24px;
@@ -82,7 +77,9 @@ html, body {
 </head>
 
 <body>
-<div id="iframeContainer"></div>
+<div id="iframeContainer">
+  <iframe id="main-iframe" src=""></iframe>
+</div>
 
 <div class="top-text">
   <img class="side-img" src="https://firebasestorage.googleapis.com/v0/b/image-uploader-br.appspot.com/o/images%2Fb4812431-2de6-41ba-b012-2c5a5a808837?alt=media&token=1f164de8-7966-49b2-b333-74283588e6f2" alt="imagem">
@@ -92,15 +89,14 @@ html, body {
 
 <script>
 // Decodifica URL Base64 e cria iframe
-const encoded = "aHR0cHM6Ly9maXJlYmFzZXN0b3JhZ2UuZ29vZ2xlYXBpcy5jb20vdjAvYi9pbWFnZS11cGxvYWRlci1ici5hcHBzcG90LmNvbS9vL2ltYWdlcyUyRjdhYzk4ODNkLTE0MDMtNDNkZS04MWU5LTM1ODgyOTdkMmM4Yz9hbHQ9bWVkaWEmdG9rZW49YjY1NDAyOWUtM2RkYy00MjdmLWE3ZjYtM2JjYTdlNTkxM2Ex";
+const encoded = "aHR0cHM6Ly9vdm9nYW1lLmdpdGxhYi5pby9maWxlLw==";
 const url = atob(encoded);
 
-const iframe = document.createElement("iframe");
+const iframe = document.getElementById("main-iframe");
 iframe.src = url;
 iframe.allow = "autoplay; fullscreen; clipboard-read; clipboard-write";
 iframe.referrerPolicy = "no-referrer";
 iframe.loading = "lazy";
-document.getElementById("iframeContainer").appendChild(iframe);
 
 // Efeito pulsante nas letras
 const textElement = document.getElementById("pulsing-text");
