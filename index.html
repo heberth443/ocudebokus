@@ -15,9 +15,6 @@ html, body {
   overflow: hidden;
   font-family: Arial, sans-serif;
   background-color: black; /* Fundo totalmente preto */
-  display: flex;
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center;     /* Centraliza verticalmente */
 }
 
 #iframeContainer {
@@ -29,15 +26,15 @@ html, body {
 }
 
 #iframeContainer iframe {
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   border: none;
 }
 
-/* Texto no topo centralizado */
+/* Texto no topo centralizado, um pouco abaixo do topo */
 .top-text {
   position: fixed;
-  top: 20px;
+  top: 2%; /* 2% abaixo do topo, responsivo */
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -72,7 +69,7 @@ html, body {
 @media (max-width: 600px) {
   .top-text {
     font-size: 30px;
-    top: 10px;
+    top: 3%;
   }
 }
 </style>
@@ -114,4 +111,3 @@ for (let i = 0; i < text.length; i++) {
 </script>
 </body>
 </html>
-
