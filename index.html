@@ -31,10 +31,10 @@ html, body {
   border: none;
 }
 
-/* Texto no topo centralizado, um pouco abaixo do topo */
+/* Texto no topo centralizado */
 .top-text {
   position: fixed;
-  top: 2%; /* 2% abaixo do topo, responsivo */
+  top: 2%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -66,10 +66,31 @@ html, body {
   60% { transform: scale(1.15); opacity: 0.9; }
 }
 
+/* Player de música fixo */
+.music-player {
+  position: fixed;
+  bottom: 15px;
+  right: 20px;
+  z-index: 5;
+  background: rgba(20, 20, 20, 0.7);
+  padding: 8px 12px;
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(128, 0, 32, 0.6);
+}
+
+.music-player audio {
+  width: 220px;
+  outline: none;
+  filter: invert(1) hue-rotate(180deg);
+}
+
 @media (max-width: 600px) {
   .top-text {
     font-size: 35px;
     top: 3%;
+  }
+  .music-player audio {
+    width: 180px;
   }
 }
 </style>
@@ -83,7 +104,14 @@ html, body {
 <div class="top-text">
   <img class="side-img" src="https://firebasestorage.googleapis.com/v0/b/image-uploader-br.appspot.com/o/images%2F5a6a4271-d957-435f-a8b0-275b564f374c?alt=media&token=ce041d82-a246-4e53-945d-cb7e8d1f02ed" alt="imagem">
   <span id="pulsing-text">O Cu de Bokus</span>
- 
+</div>
+
+<!-- Player de música -->
+<div class="music-player">
+  <audio controls autoplay loop>
+    <source src="https://raw.githubusercontent.com/heberth443/ocudebokus/refs/heads/main/Garrote%20das%20Meninas%20-%20Voc%C3%AA%20me%20vira%20a%20cabe%C3%A7a.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
 </div>
 
 <script>
@@ -109,17 +137,5 @@ for (let i = 0; i < text.length; i++) {
   textElement.appendChild(span);
 }
 </script>
-  <!-- Player de música -->
-<div style="position: fixed; bottom: 15px; right: 20px; z-index: 5; background: rgba(20, 20, 20, 0.7); padding: 8px 12px; border-radius: 12px;">
-  <audio controls autoplay loop>
-    <source src="https://raw.githubusercontent.com/heberth443/ocudebokus/refs/heads/main/Garrote%20das%20Meninas%20-%20Voc%C3%AA%20me%20vira%20a%20cabe%C3%A7a.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
-</div>
-
 </body>
 </html>
-
-
-
-
